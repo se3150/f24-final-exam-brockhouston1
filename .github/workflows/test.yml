@@ -26,22 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-        
-    - name: Install Chrome and ChromeDriver
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y google-chrome-stable chromium-chromedriver
-        
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install behave behave-webdriver selenium
-        
-    - name: Run functional tests
-      run: behave features/spy_messages.feature -v 
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Install chromedriver
+        uses: nanasess/setup-chromedriver@master
+      - name: Install behave
+        run: pip install behave behave-webdriver
+      - name: Run functional tests
+        run: behave features/spy_messages.feature -v 
