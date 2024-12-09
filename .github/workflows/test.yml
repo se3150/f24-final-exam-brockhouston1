@@ -20,7 +20,7 @@ jobs:
         pip install pytest pytest-describe pytest-spec pytest-mock
         
     - name: Run unit tests
-      run: pytest test_brute.py -v
+      run: pytest -spec test_brute.py -v
 
   functional-tests:
     runs-on: ubuntu-latest
